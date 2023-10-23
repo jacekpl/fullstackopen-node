@@ -92,7 +92,17 @@ test('if likes property is missing, it will default to 0', async () => {
 
     const latestBlog = response.body[response.body.length - 1]
     expect(latestBlog.likes).toBe(0)
+})
 
+test('if title or url properties are missing, it will return status 400', async () => {
+    const newBlog = {
+        author: 'blog author'
+    }
+
+    await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(400)
 })
 
 beforeEach(async () => {
