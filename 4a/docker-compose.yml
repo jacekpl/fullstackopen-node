@@ -1,0 +1,8 @@
+services:
+  client:
+    restart: "no"
+    build: .
+    ports:
+      - 3003:3003
+    volumes:
+      - .:/app
