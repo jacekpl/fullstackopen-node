@@ -21,8 +21,8 @@ const favoriteBlog = (blogs) => {
         return {}
     }
 
-    const reducer = (mostLiked, item) => {
-        return mostLiked.likes > item.likes ? mostLiked : item
+    const reducer = (favourite, item) => {
+        return favourite.likes > item.likes ? favourite : item
     }
 
     return blogs.reduce(reducer, blogs[0])
@@ -50,9 +50,32 @@ const mostBlogs = (blogs) => {
     return grouped[0];
 }
 
+const mostLikes = (blogs) => {
+    if (!blogs.length) {
+        return {}
+    }
+
+    let grouped = {};
+
+    blogs.forEach(function (blog) {
+        if (blog.author in grouped) {
+            grouped[blog.author].likes += blog.likes;
+        } else {
+            grouped[blog.author] = {
+                'author': blog.author,
+                'likes': blog.likes
+            }
+        }
+    })
+
+    grouped = Object.values(grouped).sort((a, b) => b.likes - a.likes);
+    return grouped[0];
+}
+
 module.exports = {
     dummy,
     totalLikes,
     favoriteBlog,
-    mostBlogs
+    mostBlogs,
+    mostLikes
 }

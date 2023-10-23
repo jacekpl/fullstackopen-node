@@ -70,7 +70,6 @@ test('dummy returns one', () => {
 })
 
 describe('total likes', () => {
-
     test('of empty list is zero', () => {
         const result = listHelper.totalLikes([])
         expect(result).toBe(0)
@@ -88,7 +87,7 @@ describe('total likes', () => {
 
 })
 
-describe('most likes', () => {
+describe('favourite blog', () => {
     test('return blog with most likes', () => {
         const result = listHelper.favoriteBlog(blogs)
         expect(result).toEqual({
@@ -113,6 +112,21 @@ describe('most blogs', () => {
         expect(result).toEqual({
             'author': 'Robert C. Martin',
             'blogs': 3
+        })
+    })
+})
+
+describe('most likes', () => {
+    test('empty object if list is empty', () => {
+        const result = listHelper.mostLikes([])
+        expect(result).toEqual({})
+    })
+
+    test('author with most likes', () => {
+        const result = listHelper.mostLikes(blogs)
+        expect(result).toEqual({
+            'author': 'Edsger W. Dijkstra',
+            'likes': 17
         })
     })
 })
