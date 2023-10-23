@@ -5,46 +5,46 @@ const api = supertest(app)
 const Blog = require('../models/blog')
 
 const initialBlogs = [
-  {
-    "_id": "65369fc4757f50cd981ed0bc",
-    "title": "12345678",
-    "author": "aaa bbb",
-    "url": "http://www.google.com",
-    "__v": 0
-  },
-  {
-    "_id": "65369feb757f50cd981ed0bf",
-    "title": "good blog",
-    "author": "test",
-    "url": "https://fullstackopen.com",
-    "__v": 0
-  },
-  {
-    "_id": "6536bc2fffa0da944d3375ed",
-    "title": "good blog2",
-    "author": "test2",
-    "url": "https://fullstackopen.com/2",
-    "__v": 0
-  }
+    {
+        "_id": "65369fc4757f50cd981ed0bc",
+        "title": "12345678",
+        "author": "aaa bbb",
+        "url": "http://www.google.com",
+        "__v": 0
+    },
+    {
+        "_id": "65369feb757f50cd981ed0bf",
+        "title": "good blog",
+        "author": "test",
+        "url": "https://fullstackopen.com",
+        "__v": 0
+    },
+    {
+        "_id": "6536bc2fffa0da944d3375ed",
+        "title": "good blog2",
+        "author": "test2",
+        "url": "https://fullstackopen.com/2",
+        "__v": 0
+    }
 ]
 
 test('blogs are returned as json', async () => {
-  await api
-    .get('/api/blogs')
-    .expect(200)
-    .expect('Content-Type', /application\/json/)
+    await api
+        .get('/api/blogs')
+        .expect(200)
+        .expect('Content-Type', /application\/json/)
 })
 
 test('there is initial number of blogs', async () => {
-  const response = await api.get('/api/blogs')
+    const response = await api.get('/api/blogs')
 
-  expect(response.body).toHaveLength(initialBlogs.length)
+    expect(response.body).toHaveLength(initialBlogs.length)
 })
 
 test('the first blog is about HTTP methods', async () => {
-  const response = await api.get('/api/blogs')
+    const response = await api.get('/api/blogs')
 
-  expect(response.body[0].title).toBe('12345678')
+    expect(response.body[0].title).toBe('12345678')
 })
 
 test('response contains id property', async () => {
@@ -53,16 +53,39 @@ test('response contains id property', async () => {
     expect(response.body[0].id).toBeDefined()
 })
 
+test('a valid blog can be added ', async () => {
+    const newBlog = {
+        title: 'sample title',
+        author: 'blog author',
+        url: 'https://google.com',
+        likes: 2
+    }
+
+    await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+
+    const response = await api.get('/api/blogs')
+    expect(response.body.length).toBe(initialBlogs.length + 1)
+
+    const contents = response.body.map(b => b.title)
+    expect(contents).toContain(
+        'sample title'
+    )
+})
+
 beforeEach(async () => {
-  await Blog.deleteMany({})
-  let blogObject = new Blog(initialBlogs[0])
-  await blogObject.save()
-  blogObject = new Blog(initialBlogs[1])
-  await blogObject.save()
-  blogObject = new Blog(initialBlogs[2])
-  await blogObject.save()
+    await Blog.deleteMany({})
+    let blogObject = new Blog(initialBlogs[0])
+    await blogObject.save()
+    blogObject = new Blog(initialBlogs[1])
+    await blogObject.save()
+    blogObject = new Blog(initialBlogs[2])
+    await blogObject.save()
 })
 
 afterAll(async () => {
-  await mongoose.connection.close()
+    await mongoose.connection.close()
 })
