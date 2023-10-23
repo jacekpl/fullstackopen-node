@@ -114,6 +114,20 @@ test('delete blog', async () => {
     expect(response.body.length).toBe(initialBlogs.length - 1)
 })
 
+test('update blog', async () => {
+    const newBlog = {
+        likes: 10,
+    }
+
+    await api
+        .put(`/api/blogs/${initialBlogs[0]._id}`)
+        .send(newBlog)
+        .expect(200)
+
+    const response = await api.get('/api/blogs')
+    expect(response.body[0].likes).toBe(10)
+})
+
 beforeEach(async () => {
     await Blog.deleteMany({})
     let blogObject = new Blog(initialBlogs[0])
