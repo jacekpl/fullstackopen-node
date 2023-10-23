@@ -105,6 +105,15 @@ test('if title or url properties are missing, it will return status 400', async 
         .expect(400)
 })
 
+test('delete blog', async () => {
+    await api
+        .delete(`/api/blogs/${initialBlogs[0]._id}`)
+        .expect(204)
+
+    const response = await api.get('/api/blogs')
+    expect(response.body.length).toBe(initialBlogs.length - 1)
+})
+
 beforeEach(async () => {
     await Blog.deleteMany({})
     let blogObject = new Blog(initialBlogs[0])
