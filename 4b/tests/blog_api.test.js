@@ -71,9 +71,28 @@ test('a valid blog can be added ', async () => {
     expect(response.body.length).toBe(initialBlogs.length + 1)
 
     const contents = response.body.map(b => b.title)
-    expect(contents).toContain(
-        'sample title'
-    )
+    expect(contents).toContain('sample title')
+})
+
+test('if likes property is missing, it will default to 0', async () => {
+    const newBlog = {
+        title: 'sample title',
+        author: 'blog author',
+        url: 'https://google.com'
+    }
+
+    await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+
+    const response = await api.get('/api/blogs')
+    expect(response.body.length).toBe(initialBlogs.length + 1)
+
+    const latestBlog = response.body[response.body.length - 1]
+    expect(latestBlog.likes).toBe(0)
+
 })
 
 beforeEach(async () => {
