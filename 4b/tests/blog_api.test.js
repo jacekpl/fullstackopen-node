@@ -35,16 +35,22 @@ test('blogs are returned as json', async () => {
     .expect('Content-Type', /application\/json/)
 })
 
-test('there are two notes', async () => {
+test('there is initial number of blogs', async () => {
   const response = await api.get('/api/blogs')
 
   expect(response.body).toHaveLength(initialBlogs.length)
 })
 
-test('the first note is about HTTP methods', async () => {
+test('the first blog is about HTTP methods', async () => {
   const response = await api.get('/api/blogs')
 
   expect(response.body[0].title).toBe('12345678')
+})
+
+test('response contains id property', async () => {
+    const response = await api.get('/api/blogs')
+
+    expect(response.body[0].id).toBeDefined()
 })
 
 beforeEach(async () => {
