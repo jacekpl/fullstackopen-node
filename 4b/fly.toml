@@ -1,0 +1,20 @@
+# fly.toml app configuration file generated for shy-voice-9163 on 2023-10-14T20:58:39Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "shy-voice-9163"
+primary_region = "waw"
+
+[build]
+
+[env]
+  PORT = "3000" # add this
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
