@@ -6,7 +6,53 @@ content-type: application/json
 
 {
   "author": "test2",
-  "title": "good blog2",
-  "url": "https://fullstackopen.com/2",
-  "upvotes": 0
+  "title": "good blog 3",
+  "url": "https://fullstackopen.com/3",
+  "upvotes": 10,
+  "userId": "653835a72b4e461927c8137d"
+}
+
+###
+POST http://localhost:3003/api/users
+content-type: application/json
+
+{
+  "username": "jacek",
+  "name": "Jacek",
+  "password": "test"
+}
+
+###
+POST http://localhost:3003/api/users
+content-type: application/json
+
+{
+  "username": "mluukkai",
+  "name": "Matti Luukkainen",
+  "password": "salainen"
+}
+
+###
+GET http://localhost:3003/api/users
+content-type: application/json
+
+###
+POST http://localhost:3003/api/login
+content-type: application/json
+
+{
+  "username": "jacek",
+  "password": "test"
+}
+
+###
+POST http://localhost:3003/api/blogs
+content-type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphY2VrIiwiaWQiOiI2NTM4MzU2NDJiNGU0NjE5MjdjODEzN2IiLCJpYXQiOjE2OTgxODQxNjd9.tYAl2zSiA86dmQQQlzwnzc_d1GMC_sZu5WHKMF9k3fU
+
+{
+  "author": "test2",
+  "title": "good blog 3",
+  "url": "https://fullstackopen.com/3",
+  "upvotes": 10
 }
