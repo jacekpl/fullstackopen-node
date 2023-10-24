@@ -1,0 +1,18 @@
+services:
+  client:
+    restart: "no"
+    build: .
+    ports:
+      - 3003:3003
+    volumes:
+      - .:/app
+  mongo:
+    image: mongo
+    restart: "no"
+    ports:
+      - 27017:27017
+    volumes:
+      - ./.docker/data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
