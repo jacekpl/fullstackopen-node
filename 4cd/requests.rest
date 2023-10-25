@@ -47,7 +47,7 @@ content-type: application/json
 ###
 POST http://localhost:3003/api/blogs
 content-type: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphY2VrIiwiaWQiOiI2NTM4MzU2NDJiNGU0NjE5MjdjODEzN2IiLCJpYXQiOjE2OTgyNTA1ODYsImV4cCI6MTY5ODI1NDE4Nn0.sTu4jANdKPqaVjwT1D8nutUFIvNbpO2gWDAqZTPzTDQ
+authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphY2VrIiwiaWQiOiI2NTM4MzU2NDJiNGU0NjE5MjdjODEzN2IiLCJpYXQiOjE2OTgyNjExMzAsImV4cCI6MTY5ODI2NDczMH0.QGjPuA8-9Q18C5ogJlTtu5usatKbWsqVPmS3AJ7EOPI
 
 {
   "author": "author",
