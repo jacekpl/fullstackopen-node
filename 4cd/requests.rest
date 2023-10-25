@@ -47,11 +47,11 @@ content-type: application/json
 ###
 POST http://localhost:3003/api/blogs
 content-type: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphY2VrIiwiaWQiOiI2NTM4MzU2NDJiNGU0NjE5MjdjODEzN2IiLCJpYXQiOjE2OTgxODQxNjd9.tYAl2zSiA86dmQQQlzwnzc_d1GMC_sZu5WHKMF9k3fU
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphY2VrIiwiaWQiOiI2NTM4MzU2NDJiNGU0NjE5MjdjODEzN2IiLCJpYXQiOjE2OTgyNTA1ODYsImV4cCI6MTY5ODI1NDE4Nn0.sTu4jANdKPqaVjwT1D8nutUFIvNbpO2gWDAqZTPzTDQ
 
 {
-  "author": "test2",
-  "title": "good blog 3",
-  "url": "https://fullstackopen.com/3",
-  "upvotes": 10
+  "author": "author",
+  "title": "title",
+  "url": "https://fullstackopen.com/url",
+  "upvotes": 5
 }
