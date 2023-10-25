@@ -55,3 +55,8 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphY
   "url": "https://fullstackopen.com/url",
   "upvotes": 5
 }
+
+###
+DELETE http://localhost:3003/api/blogs/65383cc56d81b139db9c950e
+content-type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphY2VrIiwiaWQiOiI2NTM4MzU2NDJiNGU0NjE5MjdjODEzN2IiLCJpYXQiOjE2OTgyNjA2NDYsImV4cCI6MTY5ODI2NDI0Nn0.rImSENTUiYodcrOKnBTHpxsjs0tO8EoTV-Uggu3Qidg
