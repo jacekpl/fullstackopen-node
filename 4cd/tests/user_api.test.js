@@ -59,6 +59,63 @@ describe('when there is initially one user in db', () => {
         expect(usersAtEnd).toEqual(usersAtStart)
     })
 
+    test('user cannot be created if username is not passed', async () => {
+        const newUser = {
+            name: 'user',
+            password: 'pass'
+        }
+
+        const result = await api
+            .post('/api/users')
+            .send(newUser)
+            .expect(400)
+
+        expect(result.body.error).toContain('Username is missing')
+    })
+
+    test('user cannot be created if password is not passed', async () => {
+        const newUser = {
+            username: 'user',
+            name: 'user'
+        }
+
+        const result = await api
+            .post('/api/users')
+            .send(newUser)
+            .expect(400)
+
+        expect(result.body.error).toContain('Password is missing')
+    })
+
+    test('user cannot be created if password is shorter than 3 characters', async () => {
+        const newUser = {
+            username: 'user',
+            name: 'user',
+            password: 'xx'
+        }
+
+        const result = await api
+            .post('/api/users')
+            .send(newUser)
+            .expect(400)
+
+        expect(result.body.error).toContain('Password must be at least 3 characters long')
+    })
+
+    test('user cannot be created if username is shorter than 3 characters', async () => {
+        const newUser = {
+            username: 'xx',
+            name: 'user',
+            password: 'xxxxx'
+        }
+
+        const result = await api
+            .post('/api/users')
+            .send(newUser)
+            .expect(400)
+
+        expect(result.body.error).toContain('Username must be at least 3 characters long')
+    })
 })
 
 afterAll(async () => {
